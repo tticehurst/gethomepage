@@ -3,7 +3,7 @@
 # https://gethomepage.dev/configs/info-widgets/
 
 - glances:
-    url: http://192.168.0.65:61208
+    url: {{HOMEPAGE_VAR_GLANCES_MAINVM_URL}}
     username: {{HOMEPAGE_VAR_GLANCES_USERNAME}}
     password: {{HOMEPAGE_VAR_GLANCES_PASSWORD}}
     label: mainVM
@@ -13,7 +13,7 @@
     mem: false
 
 - glances:
-    url: http://192.168.0.197:61208
+    url: {{HOMEPAGE_VAR_GLANCES_ARR_URL}}
     username: {{HOMEPAGE_VAR_GLANCES_USERNAME}}
     password: {{HOMEPAGE_VAR_GLANCES_PASSWORD}}
     label: arrStack
@@ -23,7 +23,7 @@
     mem: false
 
 - glances:
-    url: http://192.168.0.37:61208
+    url: {{HOMEPAGE_VAR_GLANCES_GAMESERVERS_URL}}
     username: {{HOMEPAGE_VAR_GLANCES_USERNAME}}
     password: {{HOMEPAGE_VAR_GLANCES_PASSWORD}}
     label: gameServers

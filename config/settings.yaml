@@ -2,6 +2,19 @@
 # For configuration options and examples, please see:
 # https://gethomepage.dev/configs/settings/
 
-providers:
-  openweathermap: openweathermapapikey
-  weatherapi: weatherapiapikey
+title: Tom's Lab
+description: Tom is the best
+theme: dark
+color: stone
+
+layout:
+  Machine stats:
+    Arr:
+      style: row
+      columns: 4
+    MainVM:
+      style: row
+      columns: 4
+    GameServers:
+      style: row
+      columns: 4
