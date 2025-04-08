@@ -1,0 +1,17 @@
+name: homepage
+services:
+  homepage:
+    image: ghcr.io/gethomepage/homepage:latest
+    container_name: homepage
+    restart: unless-stopped
+    ports:
+      - 80:3000
+    environment:
+      - TZ=Europe/London
+      - PUID=1000
+      - GUID=1000
+      - HOMEPAGE_ALLOWED_HOSTS=*
+    volumes:
+      - ./config:/app/config
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    env_file: .env
