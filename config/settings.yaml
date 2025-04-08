@@ -18,6 +18,10 @@ layout:
     icon: si-proxmox
     style: row
     columns: 2
+  ProxmoxServices:
+    header: false
+    style: row
+    columns: 1
   Machines:
     header: false
     Arr:
@@ -33,6 +37,10 @@ layout:
       header: false
       style: row
       columns: 2
+    ArrCalendar:
+      header: false
+      style: row
+      columns: 1
     MainVM:
       header: true
       icon: mdi-server

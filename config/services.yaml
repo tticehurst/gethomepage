@@ -19,6 +19,14 @@
           username: {{HOMEPAGE_VAR_PBS_TOKEN}}
           password: {{HOMEPAGE_VAR_PBS_SECRET}}
           ping: {{HOMEPAGE_VAR_PBS_URL}}
+- ProxmoxServices:
+    - Uptime:
+        ping: {{HOMEPAGE_VAR_UPTIMEKUMA_URL}}
+        icon: sh-uptime-kuma-light
+        widget:
+          type: uptimekuma
+          url: {{HOMEPAGE_VAR_UPTIMEKUMA_URL}}
+          slug: all
 - Machines:
     - MainVM:
         - CPU:
@@ -53,15 +61,6 @@
               password: {{HOMEPAGE_VAR_GLANCES_PASSWORD}}
               metric: fs:/hostfs
               version: 4
-    - MainVMServices:
-        - Paperless:
-            icon: sh-paperless-ngx-light
-            server: mainvm
-            container: paperless-ngx
-            widget:
-              type: paperlessngx
-              url: {{HOMEPAGE_VAR_APP_PAPERLESS_URL}}
-              key: {{HOMEPAGE_VAR_APP_PAPERLESS_KEY}}
     - Arr:
         - CPU:
             widget:
@@ -126,22 +125,22 @@
             container: qbittorrent
             widget:
               type: qbittorrent
-              url: {{HOMEPAGE_VAR_APP_QBITTORRENT_URL}}
+              url: {{HOMEPAGE_VAR_ARR_QBITTORRENT_URL}}
         - Gluetun:
             icon: sh-gluetun-light
             server: arrstack
             container: gluetun
             widget:
               type: gluetun
-              url: {{HOMEPAGE_VAR_APP_GLUETUN_URL}}
+              url: {{HOMEPAGE_VAR_ARR_GLUETUN_URL}}
         - Bazarr:
             icon: sh-bazarr
             server: arrstack
             container: bazarr
             widget:
               type: bazarr
-              url: {{HOMEPAGE_VAR_APP_BAZARR_URL}}
-              key: {{HOMEPAGE_VAR_APP_BAZARR_KEY}}
+              url: {{HOMEPAGE_VAR_ARR_BAZARR_URL}}
+              key: {{HOMEPAGE_VAR_ARR_BAZARR_KEY}}
     - ArrServicesJelly:
         - Jellyseerr:
             icon: sh-jellyseerr-light
@@ -149,21 +148,45 @@
             container: jellyseerr
             widget:
               type: jellyseerr
-              url: {{HOMEPAGE_VAR_APP_JELLYSEERR_URL}}
-              key: {{HOMEPAGE_VAR_APP_JELLYSEERR_KEY}}
+              url: {{HOMEPAGE_VAR_ARR_JELLYSEERR_URL}}
+              key: {{HOMEPAGE_VAR_ARR_JELLYSEERR_KEY}}
         - Jellyfin:
             icon: sh-jellyfin-light
             server: mainvm
             container: jellyfin
             widget:
               type: jellyfin
-              url: {{HOMEPAGE_VAR_APP_JELLYFIN_URL}}
-              key: {{HOMEPAGE_VAR_APP_JELLYFIN_KEY}}
+              url: {{HOMEPAGE_VAR_ARR_JELLYFIN_URL}}
+              key: {{HOMEPAGE_VAR_ARR_JELLYFIN_KEY}}
               enableUser: true
               expandOneStreamToTwoRows: false
               enableNowPlaying: true
               enableBlocks: true
               showEpisodeNumber: true
+    - ArrCalendar:
+        - Release calendar:
+            icon: sh-nextcloud-calendar-light
+            widget:
+              type: calendar
+              firstDayInWeek: sunday
+              view: monthly
+              maxEvents: 10
+              showTime: false
+              timezone: Europe/London
+              integrations:
+                - type: radarr
+                  service_group: ArrServices
+                  service_name: Radarr
+                  color: yellow
+                  params:
+                    unmonitored: false
+                - type: sonarr
+                  service_group: ArrServices
+                  service_name: Sonarr
+                  color: teal
+                  params:
+                    unmonitored: false
+
     - GameServers:
         - CPU:
             widget:
@@ -203,51 +226,51 @@
         container: watchtower
         widget:
           type: watchtower
-          url: {{HOMEPAGE_VAR_APP_WATCHTOWER_MAINVM_URL}}
-          key: {{HOMEPAGE_VAR_APP_WATCHTOWER_MAINVM_KEY}}
+          url: {{HOMEPAGE_VAR_WATCHTOWER_MAINVM_URL}}
+          key: {{HOMEPAGE_VAR_WATCHTOWER_MAINVM_KEY}}
     - Arr:
         server: arrstack
         container: watchtower
         widget:
           type: watchtower
-          url: {{HOMEPAGE_VAR_APP_WATCHTOWER_ARR_URL}}
-          key: {{HOMEPAGE_VAR_APP_WATCHTOWER_ARR_KEY}}
+          url: {{HOMEPAGE_VAR_WATCHTOWER_ARR_URL}}
+          key: {{HOMEPAGE_VAR_WATCHTOWER_ARR_KEY}}
     - GameServers:
         server: gameservers
         container: watchtower
         widget:
           type: watchtower
-          url: {{HOMEPAGE_VAR_APP_WATCHTOWER_GAMESERVERS_URL}}
-          key: {{HOMEPAGE_VAR_APP_WATCHTOWER_GAMESERVERS_KEY}}
+          url: {{HOMEPAGE_VAR_WATCHTOWER_GAMESERVERS_URL}}
+          key: {{HOMEPAGE_VAR_WATCHTOWER_GAMESERVERS_KEY}}
 - Tailscale:
     - Tailscale devices:
         - MainVM:
             widget:
               type: tailscale
-              deviceid: {{HOMEPAGE_VAR_APP_TAILSCALE_MAINVM_ID}}
-              key: {{HOMEPAGE_VAR_APP_TAILSCALE_KEY}}
+              deviceid: {{HOMEPAGE_VAR_TAILSCALE_MAINVM_ID}}
+              key: {{HOMEPAGE_VAR_TAILSCALE_KEY}}
         - ArrStack:
             widget:
               type: tailscale
-              deviceid: {{HOMEPAGE_VAR_APP_TAILSCALE_ARRSTACK_ID}}
-              key: {{HOMEPAGE_VAR_APP_TAILSCALE_KEY}}
+              deviceid: {{HOMEPAGE_VAR_TAILSCALE_ARRSTACK_ID}}
+              key: {{HOMEPAGE_VAR_TAILSCALE_KEY}}
         - GameServers:
             widget:
               type: tailscale
-              deviceid: {{HOMEPAGE_VAR_APP_TAILSCALE_GAMESERVERS_ID}}
-              key: {{HOMEPAGE_VAR_APP_TAILSCALE_KEY}}
+              deviceid: {{HOMEPAGE_VAR_TAILSCALE_GAMESERVERS_ID}}
+              key: {{HOMEPAGE_VAR_TAILSCALE_KEY}}
         - TomPi:
             widget:
               type: tailscale
-              deviceid: {{HOMEPAGE_VAR_APP_TAILSCALE_TOMPI_ID}}
-              key: {{HOMEPAGE_VAR_APP_TAILSCALE_KEY}}
+              deviceid: {{HOMEPAGE_VAR_TAILSCALE_TOMPI_ID}}
+              key: {{HOMEPAGE_VAR_TAILSCALE_KEY}}
         - TomPhone:
             widget:
               type: tailscale
-              deviceid: {{HOMEPAGE_VAR_APP_TAILSCALE_TOMPHONE_ID}}
-              key: {{HOMEPAGE_VAR_APP_TAILSCALE_KEY}}
+              deviceid: {{HOMEPAGE_VAR_TAILSCALE_TOMPHONE_ID}}
+              key: {{HOMEPAGE_VAR_TAILSCALE_KEY}}
         - Administrator1:
             widget:
               type: tailscale
-              deviceid: {{HOMEPAGE_VAR_APP_TAILSCALE_MAINVM_ID}}
-              key: {{HOMEPAGE_VAR_APP_TAILSCALE_KEY}}
+              deviceid: {{HOMEPAGE_VAR_TAILSCALE_MAINVM_ID}}
+              key: {{HOMEPAGE_VAR_TAILSCALE_KEY}}
