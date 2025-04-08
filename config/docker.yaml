@@ -8,3 +8,15 @@
 
 # my-docker:
 #   socket: /var/run/docker.sock
+
+arrstack:
+  host: http://{{HOMEPAGE_VAR_ARR_MACHINE}}
+  port: 2222
+
+gameservers:
+  host: http://{{HOMEPAGE_VAR_GAMESERVERS_MACHINE}}
+  port: 2222
+
+mainvm:
+  host: http://{{HOMEPAGE_VAR_MAINVM_MACHINE}}
+  port: 2222

@@ -3,6 +3,17 @@
 # https://gethomepage.dev/configs/info-widgets/
 
 - glances:
+    url: {{HOMEPAGE_VAR_GLANCES_SENSORS_URL}}
+    username: {{HOMEPAGE_VAR_GLANCES_USERNAME}}
+    password: {{HOMEPAGE_VAR_GLANCES_PASSWORD}}
+    label: pve
+    uptime: true
+    cpu: false
+    mem: false
+    cputemp: true
+    version: 4
+
+- glances:
     url: {{HOMEPAGE_VAR_GLANCES_MAINVM_URL}}
     username: {{HOMEPAGE_VAR_GLANCES_USERNAME}}
     password: {{HOMEPAGE_VAR_GLANCES_PASSWORD}}
@@ -31,3 +42,12 @@
     uptime: true
     cpu: false
     mem: false
+
+- resources:
+    cpu: false
+    memory: false
+    uptime: false
+    network: false
+    disk: /mnt/media
+    diskUnites: bbytes
+    label: NAS

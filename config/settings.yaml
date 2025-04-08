@@ -6,15 +6,56 @@ title: Tom's Lab
 description: Tom is the best
 theme: dark
 color: stone
+headerStyle: clean
+fullWidth: true
+disableCollapse: true
+useEqualHeights: true
+statusStyle: basic
 
 layout:
-  Machine stats:
+  Proxmox:
+    header: true
+    icon: si-proxmox
+    style: row
+    columns: 2
+  Machines:
+    header: false
     Arr:
+      header: true
+      icon: mdi-pirate
       style: row
       columns: 4
+    ArrServices:
+      header: false
+      style: row
+      columns: 3
+    ArrServicesJelly:
+      header: false
+      style: row
+      columns: 2
     MainVM:
+      header: true
+      icon: mdi-server
       style: row
       columns: 4
+    MainVMServices:
+      header: false
+      style: row
+      columns: 3
     GameServers:
+      header: true
+      icon: mdi-controller
       style: row
       columns: 4
+  Updates:
+    header: true
+    icon: si-watchtower
+    style: row
+    columns: 3
+  Tailscale:
+    header: true
+    icon: sh-tailscale-light
+    Tailscale devices:
+      header: false
+      style: row
+      columns: 3

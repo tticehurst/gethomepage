@@ -13,5 +13,5 @@ services:
       - HOMEPAGE_ALLOWED_HOSTS=*
     volumes:
       - ./config:/app/config
-      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /mnt/media:/mnt/media:ro
     env_file: .env

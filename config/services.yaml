@@ -1,8 +1,25 @@
 ---
 # For configuration options and examples, please see:
 # https://gethomepage.dev/configs/services/
-
-- Machine stats:
+- Proxmox:
+    - PVE:
+        ping: {{HOMEPAGE_VAR_PVE_URL}}
+        widget:
+          type: proxmox
+          url: {{HOMEPAGE_VAR_PVE_URL}}
+          username: {{HOMEPAGE_VAR_PVE_TOKEN}}
+          password: {{HOMEPAGE_VAR_PVE_SECRET}}
+          node: pve
+          ping: {{HOMEPAGE_VAR_PVE_URL}}
+    - PBS:
+        ping: {{HOMEPAGE_VAR_PBS_URL}}
+        widget:
+          type: proxmoxbackupserver
+          url: {{HOMEPAGE_VAR_PBS_URL}}
+          username: {{HOMEPAGE_VAR_PBS_TOKEN}}
+          password: {{HOMEPAGE_VAR_PBS_SECRET}}
+          ping: {{HOMEPAGE_VAR_PBS_URL}}
+- Machines:
     - MainVM:
         - CPU:
             widget:
@@ -36,6 +53,15 @@
               password: {{HOMEPAGE_VAR_GLANCES_PASSWORD}}
               metric: fs:/hostfs
               version: 4
+    - MainVMServices:
+        - Paperless:
+            icon: sh-paperless-ngx-light
+            server: mainvm
+            container: paperless-ngx
+            widget:
+              type: paperlessngx
+              url: {{HOMEPAGE_VAR_APP_PAPERLESS_URL}}
+              key: {{HOMEPAGE_VAR_APP_PAPERLESS_KEY}}
     - Arr:
         - CPU:
             widget:
@@ -69,6 +95,75 @@
               password: {{HOMEPAGE_VAR_GLANCES_PASSWORD}}
               metric: fs:/hostfs
               version: 4
+    - ArrServices:
+        - Prowlarr:
+            icon: sh-prowlarr
+            server: arrstack
+            container: prowlarr
+            widget:
+              type: prowlarr
+              url: {{HOMEPAGE_VAR_ARR_PROWLARR_URL}}
+              key: {{HOMEPAGE_VAR_ARR_PROWLARR_KEY}}
+        - Sonarr:
+            icon: sh-sonarr-light
+            server: arrstack
+            container: sonarr
+            widget:
+              type: sonarr
+              url: {{HOMEPAGE_VAR_ARR_SONARR_URL}}
+              key: {{HOMEPAGE_VAR_ARR_SONARR_KEY}}
+        - Radarr:
+            icon: sh-radarr-light
+            server: arrstack
+            container: radarr
+            widget:
+              type: radarr
+              url: {{HOMEPAGE_VAR_ARR_RADARR_URL}}
+              key: {{HOMEPAGE_VAR_ARR_RADARR_KEY}}
+        - QBittorrent:
+            icon: sh-qbittorrent-light
+            server: arrstack
+            container: qbittorrent
+            widget:
+              type: qbittorrent
+              url: {{HOMEPAGE_VAR_APP_QBITTORRENT_URL}}
+        - Gluetun:
+            icon: sh-gluetun-light
+            server: arrstack
+            container: gluetun
+            widget:
+              type: gluetun
+              url: {{HOMEPAGE_VAR_APP_GLUETUN_URL}}
+        - Bazarr:
+            icon: sh-bazarr
+            server: arrstack
+            container: bazarr
+            widget:
+              type: bazarr
+              url: {{HOMEPAGE_VAR_APP_BAZARR_URL}}
+              key: {{HOMEPAGE_VAR_APP_BAZARR_KEY}}
+    - ArrServicesJelly:
+        - Jellyseerr:
+            icon: sh-jellyseerr-light
+            server: arrstack
+            container: jellyseerr
+            widget:
+              type: jellyseerr
+              url: {{HOMEPAGE_VAR_APP_JELLYSEERR_URL}}
+              key: {{HOMEPAGE_VAR_APP_JELLYSEERR_KEY}}
+        - Jellyfin:
+            icon: sh-jellyfin-light
+            server: mainvm
+            container: jellyfin
+            widget:
+              type: jellyfin
+              url: {{HOMEPAGE_VAR_APP_JELLYFIN_URL}}
+              key: {{HOMEPAGE_VAR_APP_JELLYFIN_KEY}}
+              enableUser: true
+              expandOneStreamToTwoRows: false
+              enableNowPlaying: true
+              enableBlocks: true
+              showEpisodeNumber: true
     - GameServers:
         - CPU:
             widget:
@@ -102,3 +197,57 @@
               password: {{HOMEPAGE_VAR_GLANCES_PASSWORD}}
               metric: fs:/hostfs
               version: 4
+- Updates:
+    - MainVM:
+        server: mainvm
+        container: watchtower
+        widget:
+          type: watchtower
+          url: {{HOMEPAGE_VAR_APP_WATCHTOWER_MAINVM_URL}}
+          key: {{HOMEPAGE_VAR_APP_WATCHTOWER_MAINVM_KEY}}
+    - Arr:
+        server: arrstack
+        container: watchtower
+        widget:
+          type: watchtower
+          url: {{HOMEPAGE_VAR_APP_WATCHTOWER_ARR_URL}}
+          key: {{HOMEPAGE_VAR_APP_WATCHTOWER_ARR_KEY}}
+    - GameServers:
+        server: gameservers
+        container: watchtower
+        widget:
+          type: watchtower
+          url: {{HOMEPAGE_VAR_APP_WATCHTOWER_GAMESERVERS_URL}}
+          key: {{HOMEPAGE_VAR_APP_WATCHTOWER_GAMESERVERS_KEY}}
+- Tailscale:
+    - Tailscale devices:
+        - MainVM:
+            widget:
+              type: tailscale
+              deviceid: {{HOMEPAGE_VAR_APP_TAILSCALE_MAINVM_ID}}
+              key: {{HOMEPAGE_VAR_APP_TAILSCALE_KEY}}
+        - ArrStack:
+            widget:
+              type: tailscale
+              deviceid: {{HOMEPAGE_VAR_APP_TAILSCALE_ARRSTACK_ID}}
+              key: {{HOMEPAGE_VAR_APP_TAILSCALE_KEY}}
+        - GameServers:
+            widget:
+              type: tailscale
+              deviceid: {{HOMEPAGE_VAR_APP_TAILSCALE_GAMESERVERS_ID}}
+              key: {{HOMEPAGE_VAR_APP_TAILSCALE_KEY}}
+        - TomPi:
+            widget:
+              type: tailscale
+              deviceid: {{HOMEPAGE_VAR_APP_TAILSCALE_TOMPI_ID}}
+              key: {{HOMEPAGE_VAR_APP_TAILSCALE_KEY}}
+        - TomPhone:
+            widget:
+              type: tailscale
+              deviceid: {{HOMEPAGE_VAR_APP_TAILSCALE_TOMPHONE_ID}}
+              key: {{HOMEPAGE_VAR_APP_TAILSCALE_KEY}}
+        - Administrator1:
+            widget:
+              type: tailscale
+              deviceid: {{HOMEPAGE_VAR_APP_TAILSCALE_MAINVM_ID}}
+              key: {{HOMEPAGE_VAR_APP_TAILSCALE_KEY}}
